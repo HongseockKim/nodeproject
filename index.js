@@ -4,7 +4,7 @@ const express = require("express");
 const app = express();
 const hbs = require('express-handlebars');
 const path = require('path');
-
+const db = require('./json/data.json');
 
 const server = http.createServer((req,res) => {
     console.log('coming')
@@ -15,7 +15,7 @@ const server = http.createServer((req,res) => {
 
     const url = req.url;
 
-    //ㄴㅏ는 서버를 사용 안하고 app express 를 사용했음
+    //ㄴㅏ는 서버를 사용 안하고 express 를 사용했음
     if(url === '/'){
         res.setHeader('Content-Type','text/html');
         res.write('<html>');
@@ -32,9 +32,7 @@ const server = http.createServer((req,res) => {
 });
 
 
-app.listen(8080, () => {
-    //console.log(`Server is running on ${3000} port`);
-});
+
 
 /*js*/
 app.use('/jquery',express.static(path.join(__dirname,'/node_modules/jquery/dist/jquery.min.js')));
@@ -55,12 +53,71 @@ app.engine( 'hbs', hbs( {
 
 app.set( 'view engine', 'hbs' ); // handlebars파일의 확장자를 hbs로 사용.
 
+/*
+app.get 서버에 요청
+app.post 아이디 또는 패스워드 서버에 보내줄떄 
+app.delete
+app.put 업데이트 개념
+*/
+
+
+//html 파일 보내는방법
+/*
+app.get('/', function (req, res) {
+    res.sendFile(__dirname + "/index.html");
+});
+
+*/
+
+
+
+//이런 미들웨어로 보여지는 페이지 컨트롤 가능
+app.use(function(req,res,next){
+    console.log('막혔다');
+    req.user = {
+        id: '1234',
+    };
+    next();
+});
 
 
 //라우터가 / 라면 index 렌더
 app.get('/', function (req, res) {
-    res.status(200).render('index',{
-        name : "드래그 타입 2"
+    if(req.user.id == '1234'){
+        res.status(200).render('index',{
+            name : "드래그 타입 2",
+            data : db
+            
+        });
+    }else{
+        res.status(200).render('index',{
+            name : "실패"
+        });
+    }
+    console.log(req.user);
+    
+});
+
+app.get('/drag_type_2',function(req,res){
+    res.status(200).render('drag_type_2',{
+
     });
 });
 
+
+//존재하지 않은 라우터로 갔을때
+app.use(function(req,res){
+    res.render('404',{
+
+    });
+})
+
+
+app.listen(8080, (err) => {
+    //console.log(`Server is running on ${3000} port`);
+    if(err){
+        return console.log(err);
+    }else{
+        return console.log('The server is lisening');
+    }
+});
