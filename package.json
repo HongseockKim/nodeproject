@@ -19,5 +19,13 @@
   "devDependencies": {
     "nodemon": "^2.0.12"
   },
-  "description": ""
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HongseockKim/nodeproject.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HongseockKim/nodeproject/issues"
+  },
+  "homepage": "https://github.com/HongseockKim/nodeproject#readme"
 }
