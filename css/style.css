@@ -28,3 +28,26 @@ body{
     width:200px;height:200px;border-radius: 50%;
     background: azure;
 }
+#drag_type_2{
+    padding-top:100px;
+    width:1200px;margin: 0 auto;
+    min-height:500px;background: #ccc;
+}
+#drag_type_2 p{
+    margin-bottom:20px;
+}
+.canvers_con{
+    min-width:500px;
+    min-height:400px;
+    background: #333;text-align: center;
+}
+canvas{
+    background: #fff;
+}
+.canvers_type_2{
+    width: 100%;min-height:500px;
+    background: #333333;padding:10px;
+}
+.canvers_type_2 canvas{
+    display: block;width: 100%;height:100%;
+}
