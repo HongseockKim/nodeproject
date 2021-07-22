@@ -5,6 +5,13 @@ const app = express();
 const hbs = require('express-handlebars');
 const path = require('path');
 const db = require('./json/data.json');
+const mysql = require('./routes/mysql');
+const db_config = mysql.init();
+mysql.connect(db_config);
+
+
+
+
 
 const server = http.createServer((req,res) => {
     console.log('coming')
@@ -12,7 +19,6 @@ const server = http.createServer((req,res) => {
     console.log(req.httpVersion)
     console.log(req.method)
     console.log(req.url);
-
     const url = req.url;
 
     //ㄴㅏ는 서버를 사용 안하고 express 를 사용했음
@@ -32,9 +38,17 @@ const server = http.createServer((req,res) => {
 });
 
 
-
+app.listen(8080, (err) => {
+    //console.log(`Server is running on ${3000} port`);
+    if(err){
+        return console.log(err);
+    }else{
+        return console.log('The server is lisening');
+    }
+});
 
 /*js*/
+app
 app.use('/jquery',express.static(path.join(__dirname,'/node_modules/jquery/dist/jquery.min.js')));
 app.use('/draggble',express.static(path.join(__dirname,'/node_modules/jquery-ui/ui/widgets/draggable.js')));
 app.use('/jsroot',express.static(path.join(__dirname,'/js')));
@@ -113,11 +127,3 @@ app.use(function(req,res){
 })
 
 
-app.listen(8080, (err) => {
-    //console.log(`Server is running on ${3000} port`);
-    if(err){
-        return console.log(err);
-    }else{
-        return console.log('The server is lisening');
-    }
-});
