@@ -1,4 +1,67 @@
 $(function (){
+
+    zoomjs('.conss','');
+        function zoomjs(selector,bgcon){
+            var startY = 0;
+            var startx = 0;
+            var offsetx = 0;
+            var offsetY = 0;
+            var delx = 0;
+            var delY = 0;
+            var ismove = false;
+            var num = 0;
+            var nums = 0;
+
+            $(selector).on('mousedown mouseleave',function (e){
+
+                ismove = true
+                $(this).css({
+                    'cursor':'grabbing'
+                });
+                startY = e.clientY;
+                startx = e.clientX;
+                offsetY = $(selector).position().top;
+                offsetx = $(selector).position().left;
+                $(document).on('mousemove ',function (e){
+                    e.preventDefault()
+                    if(ismove === false) return false
+                    delY = e.clientY - startY;
+                    delx = e.clientX - startx;
+
+                   if(Math.floor(delx / 100) >= 0){
+                       console.log('증가')
+                           num++
+                   }else if(Math.floor(delx / 100) <=0){
+                       console.log('증감')
+                           num--;
+
+                   }
+                    // num = (num === 0) ? 6 : num
+                    num = (num === 0) ? 1080 : num
+                   // console.log(Math.floor((num % 1080) / (1080 / 6)))
+                    $(selector).children('img').attr('src','/img/'+Math.floor((num % 1080) / (1080 / 7))+'.png');
+                    $('.testsss').text('www'+Math.floor((num % 1080) / (1080 / 7))+'')
+
+                });
+            });
+            $(selector).on('mouseup mouseleave',function (){
+                ismove = false;
+                 return num
+                $(selector).onmousedown = null;
+                $(document).onmousemove = null;
+
+                $(this).css({
+                    'cursor':'grab'
+                });
+            });
+        }
+
+
+
+
+
+
+
     var swiper = new Swiper('.swiper-container', {
         // Optional parameters
         direction: 'horizontal',

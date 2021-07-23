@@ -63,6 +63,9 @@ app.use('/jsroot',express.static(path.join(__dirname,'/js')));
 /*css*/
 app.use('/reset',express.static(path.join(__dirname,'/css/reset.css')));
 app.use('/style',express.static(path.join(__dirname,'/css')));
+/*img*/
+app.use('/img',express.static(path.join(__dirname,'/img')));
+
 
 //** handlebars 핵심 설정 시작 **//
 app.engine( 'hbs', hbs( {
