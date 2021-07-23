@@ -1,0 +1,62 @@
+@charset "UTF-8";
+.earth_drag_con{
+    width: 1200px;margin: 0 auto;
+    height:500px;background: #fafafa;
+}
+.slide_con{position: relative;
+    height: 100%;width: 100%;background: #c7c7c7;
+}
+.swiper-wrapper{
+
+    width: 100%;height:100%;
+}
+.parallax-bg{
+    position: absolute;top:0;left:0;
+    width: 100%;height:100%;
+    background: url("../img/test.jpg") no-repeat center center;
+    background-size: 100%;
+}
+
+
+
+.drag_container{
+    text-align: center;
+    max-width:1200px;margin: 0 auto 100px auto;
+    padding:50px 0;
+    background: #eee;box-sizing: border-box;
+}
+.drag_item{
+    width:120px;height:120px;
+    border: 1px solid #ccc;
+    border-radius:6px;box-sizing: border-box;
+}
+.drag_item.hidden{
+    visibility: hidden;
+}
+
+.drag_item.red{
+    background: red;
+}
+.drag_item.blue{
+    background: blue;
+}
+
+.drop_jone_container{
+    display: flex;justify-content: center;align-items: center;
+    margin-top:100px;
+    height:300px;
+}
+.cons{
+    position: relative;flex-basis: 50%;height: 100%;
+}
+.drop_jons{
+    position: absolute;top:50%;left:50%;
+    transform: translate(-50%,-50%);
+    width:80%;height:80%;display: flex;justify-content: center;align-items: center;
+}
+.drop_jons.red{
+    background: #f38f8f;
+}
+.drop_jons.blue{
+    background: #6464d5;
+}

@@ -1,6 +1,10 @@
 body{
     font-family: 'Noto Sans KR', sans-serif;
 }
+
+
+
+
 .drop_con{
     position:relative;
     width:1200px;margin:0 auto;
@@ -10,7 +14,6 @@ body{
     position: absolute;top:50%;left:50%;
     transform: translate(-50%,-50%);
     width:230px;height:230px;border-radius:50%;
-    background: aquamarine;
 }
 .title{
     text-align: center;
@@ -50,4 +53,13 @@ canvas{
 }
 .canvers_type_2 canvas{
     display: block;width: 100%;height:100%;
+}
+.data_test{
+    max-width:900px;margin: 0 auto;
+}
+#data_btn{
+    display: block;
+    max-width: 200px;
+    padding:20px 0;box-sizing: border-box;
+    background: #cccccc;
 }

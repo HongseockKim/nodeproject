@@ -7,9 +7,14 @@ const path = require('path');
 const db = require('./json/data.json');
 const mysql = require('./routes/mysql');
 const db_config = mysql.init();
+const bodyParser = require('body-parser');
+const compression = require('compression');
 mysql.connect(db_config);
 
-
+//바디 파서
+app.use(bodyParser.json());//바디로 데이터를 보내면 받을수 있다
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(compression());//앱 압축 용량 줄이기용
 
 
 
@@ -48,14 +53,16 @@ app.listen(8080, (err) => {
 });
 
 /*js*/
-app
+
+
 app.use('/jquery',express.static(path.join(__dirname,'/node_modules/jquery/dist/jquery.min.js')));
 app.use('/draggble',express.static(path.join(__dirname,'/node_modules/jquery-ui/ui/widgets/draggable.js')));
+app.use('/swiper',express.static(path.join(__dirname,'/node_modules/swiper')));
 app.use('/jsroot',express.static(path.join(__dirname,'/js')));
 
 /*css*/
 app.use('/reset',express.static(path.join(__dirname,'/css/reset.css')));
-app.use('/style',express.static(path.join(__dirname,'/css/style.css')));
+app.use('/style',express.static(path.join(__dirname,'/css')));
 
 //** handlebars 핵심 설정 시작 **//
 app.engine( 'hbs', hbs( {
@@ -93,7 +100,16 @@ app.use(function(req,res,next){
     };
     next();
 });
+//데이터 테스트
+app.post('/data_test',function (req,res){
+   console.log(req.body);
+   res.send(req.body);
+});
+app.get('/data_test',function (req,res){
+    res.status(200).render('data_test',{
 
+    });
+});
 
 //라우터가 / 라면 index 렌더
 app.get('/', function (req, res) {

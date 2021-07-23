@@ -5,6 +5,7 @@ $(document).ready(function (){
 });
 
 function drags(){
+    if($('.wrap').attr('id') === "drag_type_2") return false;
     var drag = new dragmoduls();
 
     $('.drag_item').draggable({

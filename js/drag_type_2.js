@@ -1,4 +1,87 @@
 $(function (){
+    var swiper = new Swiper('.swiper-container', {
+        // Optional parameters
+        direction: 'horizontal',
+        parallax : true,
+        loop: true,
+    });
+
+
+
+    dragmutitype('.drag_item','.drop_jons','.reset');
+    function dragmutitype(dragitem,dropjone,resetbtn){
+        var drags = new dragmodule();
+        drags.refresh();
+        $(dragitem).draggable({
+            axis : 'x y',
+            cursor:"grabbing",
+            containment:'body',
+            cancel : '.drag_item.clone',
+            revertDuration : 100,
+            // helper: "clone",
+            revert :drags.isrevert,
+            start : function (e){
+                drags.getdragitem(e.target)
+            },
+            stop : function (e){
+
+            },
+        });
+        $(dropjone).droppable({
+            accept :'.drag_item',
+            drop : function (e){
+                drags.dropjon(e.target);
+                drags.groupcheck($(e.target).data('target'))
+            }
+        });
+
+        function dragmodule(){
+            var revert = undefined;
+            var dropgroup = undefined;
+            var dragItem = undefined;
+            var dropjons = undefined
+
+            this.dropjon = function (dropjon){
+                dropjons =dropjon;
+                return dropjons
+            }
+            this.isrevert = function (){
+                revert = true
+                return revert
+            }
+            this.getdragitem = function (target){
+                dragItem = target;
+                dropgroup = $(target).data('group');
+                return  dragItem
+                return dropgroup
+            }
+            this.groupcheck = function (grops){
+                // console.log(grops)
+                // console.log(dropgroup);
+                // console.log(dragItem);
+                // console.log(dropjons);
+                if(grops === dropgroup){
+                    $(dropjons).append($(dragItem).clone().css({
+                        'position':'static',
+                        'left':'auto','top':'auto'
+                    }));
+                    $(dragItem).addClass('hidden')
+                    console.log('성공')
+                }
+            }
+            this.refresh = function (){
+                $(resetbtn).on('click',function (){
+                    $('.drop_jons .drag_item').remove();
+                    $('.drag_item').removeClass('hidden');
+                });
+            }
+        }
+    }
+
+
+});
+
+$(function (){
     var canvas = $('#drawing').get(0);
     var ctx = canvas.getContext('2d');
     //색없고 스트로크만 있는 사각형

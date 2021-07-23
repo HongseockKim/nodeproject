@@ -1,9 +1,60 @@
 <div class="wrap" id="drag_type_2">
-    <p>여기는 drag_type_2 페이지</p>
+    <div class="earth_drag_con">
+        <div class="swiper-container slide_con">
+            <div class="parallax-bg" data-swiper-parallax="-23%"></div>
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <p>1</p>
+                </div>
+                <div class="swiper-slide">
+                    <p>2</p>
+                </div>
+                <div class="swiper-slide">
+                    <p>3</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="drag_container">
+        <div class="drag_item_con">
+            <div class="drag_item red" data-group="red"></div>
+            <div class="drag_item red" data-group="red"></div>
+            <div class="drag_item red" data-group="red"></div>
+            <div class="drag_item red" data-group="red"></div>
+            <div class="drag_item blue" data-group="blue"></div>
+            <div class="drag_item blue" data-group="blue"></div>
+            <div class="drag_item blue" data-group="blue"></div>
+            <div class="drag_item blue" data-group="blue"></div>
+        </div>
+        <div class="drop_jone_container">
+            <div class="red_jon_con cons">
+                <div class="drop_jons red" data-target="red">
+
+                </div>
+            </div>
+            <div class="blue_jon_con cons" >
+                <div class="drop_jons blue" data-target="blue">
+
+                </div>
+            </div>
+        </div>
+        <div class="btn_wrap">
+            <button type="button" class="reset">리셋</button>
+        </div>
+    </div>
     <div class="canvers_con">
         <canvas id="draw_065_01" class="draw position-absolute" data-role="drawing" data-lineWidth="4" data-strokeStyle="#0000ff" width="620" height="307" style="top: 0;left: 0"></canvas>
     </div>
     <div class="canvers_type_2">
         <canvas id="drawing"></canvas>
+    </div>
+    <div class="data_test">
+        <p>테스트</p>
+        <form action="/data_test">
+            <input type="text">
+            <input type="text">
+            <button type="submit" id="data_btn">테스트</button>
+        </form>
     </div>
 </div>
